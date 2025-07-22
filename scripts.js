@@ -6,7 +6,7 @@ overlay.addEventListener('click', () => {
     overlay.classList.add('hidden');
     
     music.play();
-    music.volume = 0.5;
+    music.volume = 0;
     
     video.play();
 
