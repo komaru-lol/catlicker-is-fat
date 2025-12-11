@@ -1,90 +1,54 @@
-const overlay = document.getElementById('overlay');
-const music = document.getElementById('bgMusic');
+const overlay = document.getElementById("overlay");
 const card = document.getElementById("card");
+const music = document.getElementById("bgMusic");
 
-/* ❖ CUSTOM CURSOR */
-const cursor = document.querySelector('.cursor');
-const trail = document.querySelector('.cursor-trail');
-
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + "px";
-    cursor.style.top = e.clientY + "px";
-
-    trail.style.left = e.clientX + "px";
-    trail.style.top = e.clientY + "px";
-});
-
-/* ❖ PARTICLE BACKGROUND */
-const canvas = document.getElementById("bgCanvas");
+/* 🔮 HOLOGRAM DISTORTION BACKGROUND */
+const canvas = document.getElementById("distortCanvas");
 const ctx = canvas.getContext("2d");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-let particles = [];
+let t = 0;
 
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-
-        this.size = Math.random() * 2 + 1;
-        this.color = "rgba(200, 120, 255, 0.8)";
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-
-        this.draw();
-    }
-}
-
-function initParticles() {
-    particles = [];
-    for (let i = 0; i < 150; i++) particles.push(new Particle());
-}
-
-function animate() {
+function distort() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => p.update());
-    requestAnimationFrame(animate);
+
+    let g = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    g.addColorStop(0, `hsl(${(t) % 360}, 80%, 50%)`);
+    g.addColorStop(1, `hsl(${(t + 60) % 360}, 80%, 50%)`);
+
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    t += 0.2;
+    requestAnimationFrame(distort);
 }
+distort();
 
-initParticles();
-animate();
-
-window.addEventListener("resize", () => {
+window.onresize = () => {
     canvas.width = innerWidth;
     canvas.height = innerHeight;
-    initParticles();
-});
+};
 
-/* ❖ INTRO CLICK HANDLER */
-overlay.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-
-    music.volume = 0;
-    music.play();
-
-    let fade = setInterval(() => {
-        if (music.volume < 0.4) music.volume += 0.02;
-        else clearInterval(fade);
-    }, 80);
+/* 🔊 INTRO CLICK */
+overlay.addEventListener("click", () => {
+    overlay.classList.add("hidden");
 
     card.hidden = false;
     card.classList.add("fadeClass");
+
+    music.volume = 0;
+    music.play();
+    let fadeIn = setInterval(() => {
+        if (music.volume < 0.4) music.volume += 0.02;
+        else clearInterval(fadeIn);
+    }, 80);
+});
+
+/* 🌀 PARALLAX CARD MOVEMENT */
+document.addEventListener("mousemove", (e) => {
+    let x = (e.clientX / innerWidth - 0.5) * 30;
+    let y = (e.clientY / innerHeight - 0.5) * -30;
+    card.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg)`;
 });
