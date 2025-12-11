@@ -4,50 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:title" content="Blake's bio" />
-    <meta property="og:description" content="Welcome to Blake's page" />
-    <meta property="og:image" content="assets/images/dev-pfps/serenity.png" />
-    <meta property="og:type" content="website" />
-
     <link rel="stylesheet" href="style.css" />
-    <title>Serenity</title>
+    <title>Serenity – Hologram Profile</title>
 </head>
+
 <body>
 
-<!-- Animated Background Canvas -->
-<canvas id="bgCanvas"></canvas>
+<!-- Scanline Overlay -->
+<div class="scanlines"></div>
 
-<!-- Custom Cursor -->
-<div class="cursor"></div>
-<div class="cursor-trail"></div>
+<!-- Distortion Background -->
+<canvas id="distortCanvas"></canvas>
 
+<!-- Overlay Intro -->
 <div class="overlay" id="overlay">
-    <h1 class="username">- click to enter -</h1>
+    <h1 class="glitch-title" data-text="- click to enter -">- click to enter -</h1>
 </div>
 
-<div class="card" hidden id="card">
+<!-- Main Card -->
+<div class="card" id="card" hidden>
 
-    <img src="assets/basic/serenity.png" alt="Profile" class="profile-img" />
-    <h1 class="username">Blake</h1>
-    <div class="divider">"Seroxen RAT - remote access trojan under federal watch!"</div>
-    <div class="location">C5 - "Seroxen was evolutional"</div>
+    <div class="holo-border"></div>
 
-    <div>
-        <a href="https://discord.gg/SWzPcbFZKj">
-            <img src="assets/socials/discord.png" alt="Discord" class="social-icon" />
-        </a>
+    <img src="assets/basic/serenity.png" class="profile-img"/>
 
-        <a href="https://github.com/c5hackr">
-            <img src="assets/socials/github.png" alt="GitHub" class="social-icon" />
-        </a>
+    <h1 class="rgb-text">Blake</h1>
+
+    <div class="subtitle glitch" data-text='"Seroxen RAT - remote access trojan under federal watch!"'>
+        "Seroxen RAT - remote access trojan under federal watch!"
     </div>
 
-    <div class="views">My skills:</div>
+    <div class="subtext">C5 – “Seroxen was evolutional”</div>
 
-    <div class="lowered">
-        <img src="assets/skills/dnspy.png" class="pl-icon" />
-        <img src="assets/skills/csharp.png" class="pl-icon" />
-        <img src="assets/skills/cpp.png" class="pl-icon" />
+    <div class="socials">
+        <a href="https://discord.gg/SWzPcbFZKj"><img src="assets/socials/discord.png" class="icon"/></a>
+        <a href="https://github.com/c5hackr"><img src="assets/socials/github.png" class="icon"/></a>
+    </div>
+
+    <div class="skills-title">My Skills</div>
+
+    <div class="skills">
+        <img src="assets/skills/dnspy.png" class="skill"/>
+        <img src="assets/skills/csharp.png" class="skill"/>
+        <img src="assets/skills/cpp.png" class="skill"/>
     </div>
 
 </div>
