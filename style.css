@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+body {
+    background: #020008;
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.scanlines {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 2000;
+    mix-blend-mode: overlay;
+}
+
+#distortCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity .5s;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.glitch-title {
+    font-size: 3rem;
+    font-weight: 800;
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px #ff00ff;
+}
+
+.card {
+    position: relative;
+    width: 330px;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 20px;
+    background: rgba(10, 0, 25, 0.45);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.profile-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #b300ff;
+    margin-bottom: 1rem;
+}
+
+.rgb-text {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.subtitle {
+    margin-top: .5rem;
+    font-size: 1rem;
+    opacity: 0.75;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    margin: .5rem;
+}
+
+.skills-title {
+    margin-top: 1rem;
+    opacity: .7;
+}
+
+.skills img {
+    width: 40px;
+    margin: .4rem;
+}
+
+.fadeClass {
+    animation: fadeIn .6s ease forwards;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(.8); }
+    to { opacity: 1; transform: scale(1); }
+}
