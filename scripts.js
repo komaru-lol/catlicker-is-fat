@@ -40,6 +40,7 @@ overlay.addEventListener("click", () => {
 
     music.volume = 0;
     music.play();
+
     let fadeIn = setInterval(() => {
         if (music.volume < 0.4) music.volume += 0.02;
         else clearInterval(fadeIn);
